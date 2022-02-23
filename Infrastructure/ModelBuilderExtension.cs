@@ -115,9 +115,9 @@ namespace Infrastructure
                     Description = "Motoryzacja",
                     UserId = defaultAdminId,
                     Created = DateTime.Now,
-                    CreatedBy = "Admin",
+                    CreatedBy = "testAdmin",
                     LastModified = DateTime.Now,
-                    LastModifiedBy = "Admin"
+                    LastModifiedBy = "testAdmin"
                 });
         }
     }
