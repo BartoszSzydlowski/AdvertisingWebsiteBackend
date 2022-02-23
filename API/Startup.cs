@@ -124,7 +124,11 @@ namespace API
             app.UseCors(builder => builder
                 .AllowAnyMethod()
                 .AllowAnyHeader()
-                .WithOrigins("http://localhost:3000")
+                .WithOrigins(
+                    "http://localhost:3000",
+                    "https://advertising-website-frontend-git-main-bartoszszydlowski.vercel.app",
+                    "https://advertising-website-frontend.vercel.app/",
+                    "https://advertising-website-frontend-bartoszszydlowski.vercel.app/")
                 .AllowCredentials()
                 );
 
