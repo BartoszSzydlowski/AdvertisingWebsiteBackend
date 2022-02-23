@@ -1,4 +1,5 @@
-﻿using Infrastructure.Identity;
+﻿using Domain.Models;
+using Infrastructure.Identity;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -105,6 +106,19 @@ namespace Infrastructure
                     UserId = defaultModId
                 }
             );
+
+            builder.Entity<Category>().HasData(
+                new Category
+                {
+                    Id = 1,
+                    Name = "Motoryzacja",
+                    Description = "Motoryzacja",
+                    UserId = defaultAdminId,
+                    Created = DateTime.Now,
+                    CreatedBy = "Admin",
+                    LastModified = DateTime.Now,
+                    LastModifiedBy = "Admin"
+                });
         }
     }
 }
