@@ -36,7 +36,6 @@ namespace API
                 {
                     builder.AllowAnyOrigin();
                     builder.AllowAnyMethod();
-                    builder.AllowCredentials();
                     builder.AllowAnyHeader();
                 });
             });
