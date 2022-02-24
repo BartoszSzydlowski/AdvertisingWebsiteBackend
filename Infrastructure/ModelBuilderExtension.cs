@@ -111,8 +111,8 @@ namespace Infrastructure
                 new Category
                 {
                     Id = 1,
-                    Name = "Motoryzacja",
-                    Description = "Motoryzacja",
+                    Name = "Cars",
+                    Description = "Cars and all related",
                     UserId = defaultAdminId,
                     Created = DateTime.Now,
                     CreatedBy = "testAdmin",
