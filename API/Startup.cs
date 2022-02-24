@@ -30,7 +30,15 @@ namespace API
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddCors();
+            services.AddCors(options =>
+            {
+                options.AddDefaultPolicy(builder =>
+                {
+                    builder.AllowAnyOrigin();
+                    builder.AllowAnyMethod();
+                    builder.AllowAnyHeader();
+                });
+            });
 
             services.AddControllers()
                 .AddFluentValidation(options =>
@@ -117,20 +125,11 @@ namespace API
 
             app.UseMiddleware<ErrorHandlingMiddleware>();
 
-            app.UseHttpsRedirection();
+            //app.UseHttpsRedirection();
 
             app.UseStaticFiles();
 
-            app.UseCors(builder => builder
-                .AllowAnyMethod()
-                .AllowAnyHeader()
-                .WithOrigins(
-                    "http://localhost:3000",
-                    "https://advertising-website-frontend-git-main-bartoszszydlowski.vercel.app",
-                    "https://advertising-website-frontend.vercel.app/",
-                    "https://advertising-website-frontend-bartoszszydlowski.vercel.app/")
-                .AllowCredentials()
-                );
+            app.UseCors();
 
             app.UseRouting();
 
