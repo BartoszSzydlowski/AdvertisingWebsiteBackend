@@ -12,14 +12,14 @@ namespace Application.Validators.Adverts
                 .NotEmpty()
                 .WithMessage("Advert title can't be empty.")
                 .Length(3, 100)
-                .WithMessage("Advert title must have at least 5 characters and max 100 characters.");
+                .WithMessage("Advert title must have at least 3 characters and max 100 characters.");
 
             RuleFor(x => x.Description)
                 .Cascade(CascadeMode.Stop)
                 .NotEmpty()
                 .WithMessage("Advert description can't be empty.")
                 .Length(3, 4096)
-                .WithMessage("Advert description must have at least 5 characters and max 4096 characters.");
+                .WithMessage("Advert description must have at least 3 characters and max 4096 characters.");
 
             RuleFor(x => x.Price)
                 .Cascade(CascadeMode.Stop)
