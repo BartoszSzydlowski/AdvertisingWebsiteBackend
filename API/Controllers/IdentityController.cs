@@ -174,7 +174,7 @@ namespace WebAPI.Controllers.V1
         [HttpPost]
         public async Task<IActionResult> Login(LoginModel login)
         {
-            var user = await _userManager.FindByNameAsync(login.Username);
+            var user = await _userManager.FindByEmailAsync(login.Username);
             if (user != null && await _userManager.CheckPasswordAsync(user, login.Password))
             {
                 var authClaims = new List<Claim>
