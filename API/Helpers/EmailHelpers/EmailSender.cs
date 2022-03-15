@@ -10,7 +10,7 @@ namespace API.Helpers.EmailHelpers
         public async Task SendEmailAsync(string email, string subject, string htmlMessage)
         {
             string fromMail = "advertisingwebsitebszydlowski@gmail.com";
-            string fromPassword = "MyAdvertisingWebsite2022#";
+            string fromPassword = @"K\Jd&9e=$4!dML#5";
 
             MailMessage message = new MailMessage();
             message.From = new MailAddress(fromMail);
