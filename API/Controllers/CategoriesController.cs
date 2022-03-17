@@ -3,6 +3,7 @@ using API.Wrappers;
 using Application.Dtos.CategoryDtos;
 using Application.Interfaces.Category;
 using Infrastructure.Identity;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
 using System.Threading.Tasks;
@@ -46,14 +47,16 @@ namespace API.Controllers
             return Created($"api/posts/{newCategory.Id}", new Response<CategoryDto>(newCategory));
         }
 
+        [Authorize]
         [ValidateFilter]
         [HttpPut]
         public async Task<IActionResult> Update(UpdateCategoryDto model)
         {
             var userOwnsCategory = await _service.UserOwnsAsync(model.Id, User.FindFirstValue(ClaimTypes.NameIdentifier));
-            var isAdminOrMod = User.IsInRole(UserRoles.Admin) || User.IsInRole(UserRoles.Moderator);
+            var isAdmin = User.IsInRole(UserRoles.Admin);
+            var isMod = User.IsInRole(UserRoles.Moderator);
 
-            if (!isAdminOrMod && !userOwnsCategory)
+            if (!isAdmin && !isMod && !userOwnsCategory)
             {
                 return BadRequest(new Response(false, "Failed to delete"));
             }
@@ -66,9 +69,10 @@ namespace API.Controllers
         public async Task<IActionResult> Delete(int id)
         {
             var userOwnsCategory = await _service.UserOwnsAsync(id, User.FindFirstValue(ClaimTypes.NameIdentifier));
-            var isAdminOrMod = User.IsInRole(UserRoles.Admin) || User.IsInRole(UserRoles.Moderator);
+            var isAdmin = User.IsInRole(UserRoles.Admin);
+            var isMod = User.IsInRole(UserRoles.Moderator);
 
-            if (!isAdminOrMod && !userOwnsCategory)
+            if (!isAdmin && !isMod && !userOwnsCategory)
             {
                 return BadRequest(new Response(false, "Failed to delete"));
             }
